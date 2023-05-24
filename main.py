@@ -19,10 +19,6 @@ app = Flask(__name__)
 def index():
     return render_template('index.html',data=langues)
 
-@app.route("/test" , methods=['GET', 'POST'])
-def test():
-    select = request.form.get('comp_select')
-    return(str(select)) # just to see what select is
 
 @app.route('/', methods=['GET', 'POST'])
 def getText():
@@ -30,16 +26,17 @@ def getText():
         # Retrieve the text from the textarea
         texte = request.form.get('Traduire')
         toLanguage = request.form.get("traduction_select")
-        print(toLanguage)
+        fromLanguage = request.form.get("traduire_select")
+       
         
-        #traduction = translator.translate(texte,dest=toLanguage).text
-        # Print the text in terminal for verification
-        #print(traduction)
-        
-        
-        return render_template('index.html',data=langues)
+        traduction = translator.translate(texte,src=fromLanguage,dest=toLanguage).text
+        auto_language = f"La langue détectée : {langues[translator.detect(texte).lang]}"
+       
         
         
+        return render_template('index.html',data=langues,sample_input=traduction,sample_text=texte,detect_language=auto_language)
+        
+   
   
     return render_template('index.html',data=langues)
 
