@@ -1,6 +1,20 @@
 h1 {
     border: 2px #eee solid;
-    color: brown;
     text-align: center;
     padding: 10px;
 }
+
+body {
+    background-color: #B4B4A3;
+}
+
+.container {
+    padding: 10%;
+    background-color: #F8F7E2;
+}
+
+#totranslate {
+    width: 30%;
+    height: 10%;
+}
+
